@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.optim as optim
 import time
 import matplotlib.pyplot as plt
-from model import BasicCNN
+from model import ImprovedCNN  
 from data_loader import get_loaders
 
 def main():
@@ -11,23 +11,23 @@ def main():
     device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
     print(f"Device: {device}")
 
-    # 2. Get Data
-    # Returns the pre-configured loaders from your data_loader.py
+    # 2. Get Data (Now includes Augmentation automatically)
     trainloader, testloader = get_loaders(batch_size=128, use_subset=False)
 
     # 3. Initialize Model
-    model = BasicCNN().to(device)
+    model = ImprovedCNN().to(device)
 
     # 4. Define Loss & Optimizer
     criterion = nn.CrossEntropyLoss()
+    # We stick to the same LR (0.001) for a fair comparison
     optimizer = optim.Adam(model.parameters(), lr=0.001)
 
     # 5. Training Loop
-    EPOCHS = 10
+    EPOCHS = 25
     train_losses = []
     test_accs = []
     
-    print(f"Starting training for {EPOCHS} epochs...")
+    print(f"Starting training for {EPOCHS} epochs (Improved Model)...")
     start_time = time.time()
 
     for epoch in range(EPOCHS):
@@ -57,8 +57,9 @@ def main():
 
     print(f"Finished in {time.time() - start_time:.1f} seconds")
     
-    torch.save(model.state_dict(), "cifar10_cnn.pth")
-    print("Model saved as cifar10_cnn.pth")
+    # Save the Improved Model
+    torch.save(model.state_dict(), 'improved_cnn.pth') 
+    print("Model saved to improved_cnn.pth")
     
     plot_results(train_losses, test_accs)
 
@@ -90,7 +91,7 @@ def plot_results(losses, accs):
     ax2.plot(accs, color=color, marker='x')
     ax2.tick_params(axis='y', labelcolor=color)
 
-    plt.title('Training Dynamics')
+    plt.title('Training Dynamics (Improved CNN)')
     plt.show()
 
 if __name__ == '__main__':

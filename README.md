@@ -74,9 +74,5 @@ To bridge the 25% gap, we must introduce **Regularization**:
 
 ---
 
-### Visuals for your Report
+### Visuals
 
-To make this section "pop" in your document, you should generate these two plots using `matplotlib`:
-
-1. **Loss Curve:** Show Training Loss plummeting to 0 while Test Loss (if you tracked it) starts rising again.
-2. **Confusion Matrix:** Show *which* classes are being confused (e.g., Cat vs Dog is a common error in CIFAR-10).
