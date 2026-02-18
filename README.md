@@ -1,10 +1,10 @@
 # Project Report: CIFAR-10 Classification Learning
 
-## Phase 1: The Baseline Model (Simple CNN)
+## Stage 1: The Baseline Model (Simple CNN)
 
 ### 1. Setup
 
-The initial test used a `BasicCNN` to see how a standard setup performs without any extra help.
+The initial test used a `BasicCNN` to see how a standard setup performs.
 
 * **Structure:** 2 Convolutional blocks, followed by 2 Linear layers.
 * **Size:** About 1.6 million parameters.
@@ -30,7 +30,7 @@ The model achieved nearly 100% accuracy on images it had seen (Training) but stu
 
 ---
 
-## Phase 2: The Improved Model (Robust CNN)
+## Stage 2: The Improved Model (Robust CNN)
 
 ### 1. The Fixes
 
